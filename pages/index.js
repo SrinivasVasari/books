@@ -1,209 +1,198 @@
-import Head from 'next/head'
+import Head from "next/head";
+import MainPage from "../components/Layout/Main";
+import Nav from "../components/Layout/Nav";
 
 export default function Home() {
   return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
+    <>
+      <Nav />
+      <div className="container">
+        <Head>
+          <title>Books App</title>
+          <meta
+            name="viewport"
+            content="width=device-width,minimum-scale=1,initial-scale=1"
+          />
+          <link rel="icon" href="/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+          />
+          <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
+        </Head>
+        <main>
+          <MainPage />
+        </main>
+        <style jsx>{`
+          .container {
+            min-height: 100vh;
+            padding: 0 0.5rem;
+            display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
           }
-        }
-      `}</style>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
+          main {
+            width: 100%;
+            padding: 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            margin-bottom: 5rem;
+          }
+          @media (max-width: 767px) {
+            main {
+              padding: 2rem 0;
+            }
+          }
+        `}</style>
 
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+        <style jsx global>{`
+          * {
+            box-sizing: border-box;
+          }
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+              sans-serif;
+            background: #f5f5f5;
+          }
+          nav .nav-wrapper {
+            width: 100%;
+            background-image: linear-gradient(
+              to right,
+              rgba(0, 144, 218, 1),
+              rgba(164, 206, 78, 1)
+            );
+          }
+          nav i.material-icons {
+            font-size: 2.5rem;
+          }
+          .brand-logo {
+            font-family: 'Cinzel Decorative', cursive;
+          }
+          .main-content {
+            width: 100%;
+          }
+          .customRow {
+            margin: 0;
+          }
+          .books-list {
+            display: flex;
+            flex-flow: wrap;
+            margin-top: 2rem;
+          }
+          .book {
+            border: 1px solid #ccc;
+            margin: 0.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: self-start;
+            position: relative;
+            width: 12rem;
+            height: 14rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          }
+
+          .book .header {
+            width: 100%;
+          }
+          .book h5 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            margin-bottom: 0.25rem;
+            font-weight: bold;
+          }
+          .author {
+            color: #aaa;
+            font-size: 12px;
+          }
+          .btn-container {
+            margin: 2rem 0 0.5rem;
+            position: absolute;
+            bottom: 1rem;
+          }
+          .btn-container a:first-child {
+            margin-right: 0.5rem;
+          }
+          .btn {
+            margin-right: 0.5rem;
+            color: #fff;
+            border: 0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+          }
+          .btn-edit {
+            background: #03a9f4;
+          }
+          .btn-delete {
+            background: #ff8f00;
+          }
+          .material-icons {
+            font-size: 16px;
+          }
+          .editBookForm {
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          }
+          .bookDetails {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            margin: 1rem 0.5rem;
+          }
+          .details {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+          }
+          .details:last-child {
+            border: 0;
+          }
+          .details span:first-child {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 1rem;
+          }
+          @media (max-width: 600px) {
+            .container {
+              width: 100%;
+              overflow: hidden;
+            }
+            main {
+              padding: 2rem 0;
+            }
+            .books-list {
+              justify-content: center;
+            }
+            .book {
+              width: 10rem;
+              margin: 1rem 0.5rem;
+            }
+          }
+        `}</style>
+      </div>
+    </>
+  );
 }
