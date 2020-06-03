@@ -5,15 +5,18 @@ import BookDetails from "./BookDetails";
 const BookList = () => {
   const { state, dispatch } = useContext(BooksContext);
   const [selected, setSelected] = useState(null);
-  const selectedBook = state.books.filter((book) => {
+  const { books} = state;
+
+  const selectedBook = books.filter((book) => {
     if (book.id === selected) {
       return book;
     }
   });
+
   return (
     <Fragment>
       <div className="books-list">
-        {state.books.map((book) => {
+        {books.map((book) => {
           const { bookName, bookAuthor } = book.books;
           return (
             <div className="book" key={book.id} onClick={(e) => setSelected(book.id)}>

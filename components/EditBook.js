@@ -16,14 +16,10 @@ const EditBook = () => {
       bookAuthor,
       bookDesc,
     };
-    if (bookName.trim() === "") {
-      alert("Cannot add blank book");
-    } else {
-      dispatch({ type: "UPDATE_BOOK", payload: updateBook });
-      setBookName("");
-      setBookAuthor("");
-      setBookDesc("");
-    }
+    dispatch({ type: "UPDATE_BOOK", payload: updateBook });
+    setBookName("");
+    setBookAuthor("");
+    setBookDesc("");
   };
 
   return (
@@ -31,8 +27,8 @@ const EditBook = () => {
       <h4>Update Book</h4>
       <div className="editBookForm row">
         <form className="col s12" onSubmit={handleSubmit}>
-          <div class="row">
-            <div class="input-field col s6">
+          <div className="row">
+            <div className="input-field col s6">
               <input
                 type="text"
                 name="Name"
@@ -43,7 +39,7 @@ const EditBook = () => {
                 className="validate"
               />
             </div>
-            <div class="input-field col s6">
+            <div className="input-field col s6">
               <input
                 type="text"
                 name="Author"
@@ -55,8 +51,8 @@ const EditBook = () => {
               />
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
+          <div className="row">
+            <div className="input-field col s12">
               <input
                 type="text"
                 onChange={(e) => setBookDesc(e.target.value)}
