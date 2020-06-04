@@ -1,9 +1,8 @@
 import React from "react";
 
-const BookDetails = (props) => {
-  const { book } = props;
+const BookDetails = ({ book }) => {
   if (book) {
-    const { bookName, bookAuthor, bookDesc } = book.books;
+    const { bookName, bookAuthor, bookDesc } = book && book.books;
     return (
       <>
         <div className="details">

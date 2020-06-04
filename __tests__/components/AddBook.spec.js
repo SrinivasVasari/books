@@ -23,7 +23,7 @@ describe("Add Book Container", () => {
   it("calls handle Submit function when form is submitted", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
-    const fakeEvent = { preventDefault: () => console.log("preventDefault") };
+    const fakeEvent = { preventDefault: () => {} };
     const wrapper = mount(
       <BooksContext.Provider value={{ dispatch: dispatchMock }}>
         <AddBook onSubmit={handleSubmitFn} />
