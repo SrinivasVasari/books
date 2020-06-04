@@ -1,18 +1,11 @@
-import React from "react";
-import { shallow } from "enzyme";
 import booksReducer from "../../reducer/reducer";
 
-describe("test the Books Reducer", () => {
-  const mockBooks = {
-    bookName: "test1 Name",
-    bookAuthor: "test1 Author",
-    bookDesc: "test1 Description",
-  };
+describe("Test the Books Reducer", () => {
   it("Should return default state", () => {
     const newState = booksReducer(undefined, {});
     expect(newState).not.toBeNull();
   });
-  test("returns the correct state", () => {
+  it("Should returns the new state when adding book details", () => {
     const state = {
       currentBook: null,
       books: [],
@@ -28,7 +21,7 @@ describe("test the Books Reducer", () => {
 
     expect(reducer).not.toBeNull();
   });
-  test("returns the correct state when delete", () => {
+  it("Should returns the state when delete the book", () => {
     const state = {
       currentBook: null,
       books: [
@@ -70,7 +63,7 @@ describe("test the Books Reducer", () => {
     });
   });
 
-  test("returns the correct state current Book", () => {
+  it("Should returns the state of current Book", () => {
     const state = {
       currentBook: null,
       books: [],
@@ -96,7 +89,7 @@ describe("test the Books Reducer", () => {
     });
   });
 
-  test("returns the correct state when editing", () => {
+  it("Should update the state when editing Book details", () => {
     const state = {
       currentBook: null,
       books: [],

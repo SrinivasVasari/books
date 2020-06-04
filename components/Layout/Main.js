@@ -8,6 +8,7 @@ import booksReducer from "../../reducer/reducer";
 const MainPage = () => {
   const initialState = useContext(BooksContext);
   const [state, dispatch] = useReducer(booksReducer, initialState);
+  
   return (
     <BooksContext.Provider value={{ state, dispatch }}>
       {state.currentBook === null ? (

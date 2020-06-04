@@ -32,6 +32,14 @@ describe("Book List Container", () => {
           },
           id: "3",
         },
+        {
+          books: {
+            bookAuthor: "author4",
+            bookDesc: "desc4",
+            bookName: "name4",
+          },
+          id: "4",
+        },
       ],
     },
     dispatch: jest.fn(),
@@ -41,47 +49,46 @@ describe("Book List Container", () => {
     wrapper = mount(<BookList />);
   });
 
-  it("should render correctly", () => {
+  it("Should render correctly", () => {
     expect(wrapper).not.toBeNull();
   });
 
-  it("initially displays 3 items, first of them done", () => {
+  it("Initially display four List Items.", () => {
     const wrapper = mount(
       <BooksContext.Provider value={value}>
         <BookList />
       </BooksContext.Provider>
     );
-    expect(wrapper.find("li")).toHaveLength(3);
+    expect(wrapper.find("li")).toHaveLength(4);
   });
-  test("Test click event", () => {
-    const mockCallBack = jest.fn();
-
+  it("Should call List Item click function", () => {
+    const listItemHandleFn = jest.fn();
     const li = mount(
       <BooksContext.Provider value={value}>
-        <BookList onClick={mockCallBack} />
+        <BookList onClick={listItemHandleFn} />
       </BooksContext.Provider>
     );
     li.find("li").at(0).simulate("click");
-    expect(mockCallBack).toHaveBeenCalledTimes(0);
+    expect(listItemHandleFn).toHaveBeenCalledTimes(0);
   });
-  test("Test click edit event", () => {
-    const mockCallBack = jest.fn();
+  it("Should call edit button click function", () => {
+    const editHandleFn = jest.fn();
     const wrapper = mount(
       <BooksContext.Provider value={value}>
-        <BookList onClick={mockCallBack} />
+        <BookList onClick={editHandleFn} />
       </BooksContext.Provider>
     );
     wrapper.find("#edit").at(0).simulate("click");
-    expect(mockCallBack).toHaveBeenCalledTimes(0);
+    expect(editHandleFn).toHaveBeenCalledTimes(0);
   });
-  test("Test click Delete event", () => {
-    const mockCallBack = jest.fn();
+  it("Should call Delete button function", () => {
+    const deleteHandleFn = jest.fn();
     const wrapper = mount(
       <BooksContext.Provider value={value}>
-        <BookList onClick={mockCallBack} />
+        <BookList onClick={deleteHandleFn} />
       </BooksContext.Provider>
     );
     wrapper.find("#delete").at(0).simulate("click");
-    expect(mockCallBack).toHaveBeenCalledTimes(0);
+    expect(deleteHandleFn).toHaveBeenCalledTimes(0);
   });
 });

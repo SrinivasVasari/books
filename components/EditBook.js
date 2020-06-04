@@ -27,48 +27,51 @@ const EditBook = () => {
   };
 
   return (
-    <form className="form col s12" onSubmit={handleSubmit}>
-      <div className="row">
-        <div className="input-field col s6">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Book Name"
-            onChange={(e) => setBookName(e.target.value)}
-            value={bookName || ''}
-            className="name"
-          />
+    <div className="editBookForm">
+      <h4 className="center-align">Update Book</h4>
+      <form className="form col s12" onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Book Name"
+              onChange={(e) => setBookName(e.target.value)}
+              value={bookName || ""}
+              className="name"
+            />
+          </div>
+          <div className="input-field col s12">
+            <input
+              type="text"
+              name="author"
+              id="author"
+              placeholder="Book Author"
+              onChange={(e) => setBookAuthor(e.target.value)}
+              value={bookAuthor || ""}
+              className="Author"
+            />
+          </div>
         </div>
-        <div className="input-field col s6">
-          <input
-            type="text"
-            name="author"
-            id="author"
-            placeholder="Book Author"
-            onChange={(e) => setBookAuthor(e.target.value)}
-            value={bookAuthor || ''}
-            className="author"
-          />
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              type="text"
+              onChange={(e) => setBookDesc(e.target.value)}
+              value={bookDesc || ""}
+              name="description"
+              id="description"
+              placeholder="Book Description"
+              className="description"
+            />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="input-field col s12">
-          <input
-            type="text"
-            onChange={(e) => setBookDesc(e.target.value)}
-            value={bookDesc || ''}
-            name="description"
-            id="description"
-            placeholder="Book Description"
-            className="description"
-          />
-        </div>
-      </div>
-      <button type="submit" className="waves-effect waves-light btn-small">
-        update Book
-      </button>
-    </form>
+        <button type="submit" className="waves-effect waves-light btn-small">
+          update Book
+        </button>
+      </form>
+    </div>
   );
 };
 

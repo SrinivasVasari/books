@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Add Book Container should render correctly 1`] = `
+exports[`AddBook Container Should render correctly 1`] = `
 <form
   className="form col s12"
   onSubmit={[Function]}

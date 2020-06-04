@@ -4,7 +4,7 @@ import toJson from "enzyme-to-json";
 import EditBook from "../../components/EditBook";
 import BooksContext from "../../context/context";
 
-describe("Add Book Container", () => {
+describe("Edit Book Container", () => {
   const testState = {
     bookName: "test",
     bookAuthor: "test1",
@@ -19,10 +19,38 @@ describe("Add Book Container", () => {
     jest.clearAllMocks();
   });
 
-  it("should render correctly", () => {
+  it("Should render correctly", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
-  it("should call input onChange", () => {
+  it("Should render form currentBook is null", () => {
+    const state = {
+      books: [
+        {
+          books: {
+            bookAuthor: "author",
+            bookDesc: "desc",
+            bookName: "name,",
+          },
+          id: "1",
+        },
+      ],
+      currentBook: {
+        books: {
+          bookAuthor: "author",
+          bookDesc: "desc",
+          bookName: "name,",
+        },
+        id: "1",
+      },
+    };
+    const wrapper = mount(
+      <BooksContext.Provider value={{ state }}>
+        <EditBook {...state} />
+      </BooksContext.Provider>
+    );
+    expect(wrapper).not.toBeNull();
+  });
+  it("Should call input onChange function", () => {
     wrapper
       .find("input")
       .at(0)
@@ -41,7 +69,7 @@ describe("Add Book Container", () => {
     expect(testState.bookAuthor).toEqual("test1");
     expect(testState.bookDesc).toEqual("test2");
   });
-  it("calls handle Submit function when form is submitted", () => {
+  it("Should call handleSubmit function when form is submitted", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
     const fakeEvent = { preventDefault: () => {} };

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render without errors Should render correctly 1`] = `
+exports[`Navigation should render without errors 1`] = `
 <nav>
   <div
     className="nav-wrapper grey"

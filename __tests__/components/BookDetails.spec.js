@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import BookDetails from "../../components/BookDetails";
 
-describe("test the Book Details", () => {
+describe("Book Details", () => {
   const props = {
     book: {
       books: {
@@ -13,7 +13,7 @@ describe("test the Book Details", () => {
       id: "1"
     },
   };
-  test("Should return default state", () => {
+  it("Should render BookDetails with data", () => {
     const wrapper = mount(<BookDetails {...props} />);
     expect(wrapper).not.toBeNull();
   });

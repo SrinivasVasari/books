@@ -4,7 +4,12 @@ import toJson from "enzyme-to-json";
 import AddBook from "../../components/AddBook";
 import BooksContext from "../../context/context";
 
-describe("Add Book Container", () => {
+describe("AddBook Container", () => {
+  const testState = {
+    bookName: "test",
+    bookAuthor: "test1",
+    bookDesc: "test2",
+  };
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<AddBook />);
@@ -14,13 +19,13 @@ describe("Add Book Container", () => {
     jest.clearAllMocks();
   });
 
-  it("should render correctly", () => {
+  it("Should render correctly", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
-  it("should have three text fields", () => {
+  it("Should have three input fields", () => {
     expect(wrapper.find('input[type="text"]').length).toEqual(3);
   });
-  it("calls handle Submit function when form is submitted", () => {
+  it("Should call handleSubmit function when form is submitted", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
     const fakeEvent = { preventDefault: () => {} };
@@ -43,7 +48,7 @@ describe("Add Book Container", () => {
     expect(handleSubmitFn.mock.calls).not.toBeNull();
   });
 
-  it("renders submit button with custom text", () => {
+  it("Should render submit button with Add Book text", () => {
     const wrapper = mount(<AddBook />);
     const button = wrapper.find("button");
     expect(button).toHaveLength(1);
@@ -51,30 +56,23 @@ describe("Add Book Container", () => {
     expect(button.text()).toEqual("Add Book");
   });
 
-  describe("Add Book", () => {
-    const testState = {
-      bookName: "test",
-      bookAuthor: "test1",
-      bookDesc: "test2",
-    };
-    it("should call input onChange", () => {
-      wrapper
-        .find("input")
-        .at(0)
-        .simulate("change", { target: { name: "name", value: "test" } });
-      wrapper
-        .find("input")
-        .at(1)
-        .simulate("change", { target: { name: "author", value: "test1" } });
-      wrapper
-        .find("input")
-        .at(2)
-        .simulate("change", {
-          target: { name: "description", value: "test2" },
-        });
-      expect(testState.bookName).toEqual("test");
-      expect(testState.bookAuthor).toEqual("test1");
-      expect(testState.bookDesc).toEqual("test2");
-    });
+  it("Should call input onChange function when user enter in input", () => {
+    wrapper
+      .find("input")
+      .at(0)
+      .simulate("change", { target: { name: "name", value: "test" } });
+    wrapper
+      .find("input")
+      .at(1)
+      .simulate("change", { target: { name: "author", value: "test1" } });
+    wrapper
+      .find("input")
+      .at(2)
+      .simulate("change", {
+        target: { name: "description", value: "test2" },
+      });
+    expect(testState.bookName).toEqual("test");
+    expect(testState.bookAuthor).toEqual("test1");
+    expect(testState.bookDesc).toEqual("test2");
   });
 });

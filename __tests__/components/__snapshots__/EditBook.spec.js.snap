@@ -1,62 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Add Book Container should render correctly 1`] = `
-<form
-  className="form col s12"
-  onSubmit={[Function]}
+exports[`Edit Book Container Should render correctly 1`] = `
+<div
+  className="editBookForm"
 >
-  <div
-    className="row"
+  <h4
+    className="center-align"
+  >
+    Update Book
+  </h4>
+  <form
+    className="form col s12"
+    onSubmit={[Function]}
   >
     <div
-      className="input-field col s6"
+      className="row"
     >
-      <input
-        className="name"
-        id="name"
-        name="name"
-        onChange={[Function]}
-        placeholder="Book Name"
-        type="text"
-        value=""
-      />
+      <div
+        className="input-field col s12"
+      >
+        <input
+          className="name"
+          id="name"
+          name="name"
+          onChange={[Function]}
+          placeholder="Book Name"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="input-field col s12"
+      >
+        <input
+          className="Author"
+          id="author"
+          name="author"
+          onChange={[Function]}
+          placeholder="Book Author"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
     <div
-      className="input-field col s6"
+      className="row"
     >
-      <input
-        className="author"
-        id="author"
-        name="author"
-        onChange={[Function]}
-        placeholder="Book Author"
-        type="text"
-        value=""
-      />
+      <div
+        className="input-field col s12"
+      >
+        <input
+          className="description"
+          id="description"
+          name="description"
+          onChange={[Function]}
+          placeholder="Book Description"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="input-field col s12"
+    <button
+      className="waves-effect waves-light btn-small"
+      type="submit"
     >
-      <input
-        className="description"
-        id="description"
-        name="description"
-        onChange={[Function]}
-        placeholder="Book Description"
-        type="text"
-        value=""
-      />
-    </div>
-  </div>
-  <button
-    className="waves-effect waves-light btn-small"
-    type="submit"
-  >
-    update Book
-  </button>
-</form>
+      update Book
+    </button>
+  </form>
+</div>
 `;
