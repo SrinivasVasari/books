@@ -1,5 +1,6 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow, mount } from "enzyme";
+import toJson from 'enzyme-to-json';
 import AddBook from "../../components/AddBook";
 
 describe('Add Book Container', () => {
@@ -13,15 +14,36 @@ describe('Add Book Container', () => {
   });
 
   it("should render correctly", () => {
-    expect(wrapper).not.toBeNull();
+    const wrapper = shallow(<AddBook />);
+    expect(toJson(wrapper)).toMatchSnapshot()
   });
   it('should have three text fields', () => {
     expect(wrapper.find('input[type="text"]').length).toEqual(3);
   });
-  it('Contains a button', () => {
-    const button = <button>Add Book</button>
-    expect(wrapper.containsMatchingElement(button)).toBe(true);
-  })
+  it('calls handle Submit function when form is submitted', () => {
+    const handleSubmitFn = jest.fn();
+    const dispatch = { type: "ADD_BOOK", payload: {} };
+    const fakeEvent = { preventDefault: () => console.log('preventDefault') };
+    const wrapper = shallow(<AddBook onSubmit={handleSubmitFn}/>);
+    const form = wrapper.find('form');
+    wrapper.find("#name").simulate("change", { 
+      target: { name: "name", value: "blah" } });
+    wrapper.find("#author").simulate("change", {
+      target: { name: "author", value: "blah1" },
+      });
+    wrapper.find("#description").simulate("change", {
+      target: { name: "description", value: "blah2" },
+      });
+    form.simulate('submit', fakeEvent, dispatch);
+    expect(handleSubmitFn.mock.calls).not.toBeNull();
+  });
+  it('renders submit button with custom text', () => {
+    const wrapper = mount(<AddBook />);
+    const button = wrapper.find('button');
+    expect(button).toHaveLength(1);
+    expect(button.prop('type')).toEqual('submit');
+    expect(button.text()).toEqual('Add Book');
+  });
 
   describe('Add Book', () => {
     const testState = { bookName: "test", bookAuthor: "test1", bookDesc: "test2" };

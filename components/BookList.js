@@ -5,9 +5,8 @@ import BookDetails from "./BookDetails";
 const BookList = () => {
   const { state, dispatch } = useContext(BooksContext);
   const [selected, setSelected] = useState(null);
-  const { books} = state;
-
-  const selectedBook = books.filter((book) => {
+  console.log('Cannot read propertyof undefined', state.books);
+  const selectedBook = state.books.filter((book) => {
     if (book.id === selected) {
       return book;
     }
@@ -15,11 +14,11 @@ const BookList = () => {
 
   return (
     <Fragment>
-      <div className="books-list">
-        {books.map((book) => {
+      <ul className="books-list">
+        {state.books.map((book) => {
           const { bookName, bookAuthor } = book.books;
           return (
-            <div className="book" key={book.id} onClick={(e) => setSelected(book.id)}>
+            <li className="book" key={book.id} onClick={(e) => setSelected(book.id)}>
               <div className="header">
                 <h5>{bookName}</h5>
                 <span className="author"><i>__{bookAuthor}</i></span>
@@ -42,10 +41,10 @@ const BookList = () => {
                   <i className="material-icons">delete</i>
                 </a>
               </div>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       <div className="bookDetails">
         <BookDetails book={selectedBook[0]} bookId={selected} />

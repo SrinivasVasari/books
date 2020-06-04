@@ -21,8 +21,7 @@ const AddBook = () => {
   };
 
   return (
-    <div className="BookForm row customRow">
-      <form className="col s12" onSubmit={handleSubmit}>
+      <form className="form col s12" onSubmit={handleSubmit}>
         <div className="row customRow">
           <div className="input-field col s12 m6">
             <input
@@ -31,7 +30,7 @@ const AddBook = () => {
               id="name"
               onChange={(e) => setBookName(e.target.value)}
               value={bookName}
-              className="validate"
+              className="name"
             />
             <label htmlFor="name">Book Name</label>
           </div>
@@ -42,7 +41,7 @@ const AddBook = () => {
               id="author"
               onChange={(e) => setBookAuthor(e.target.value)}
               value={bookAuthor}
-              className="validate"
+              className="author"
             />
             <label htmlFor="author">Book Author</label>
           </div>
@@ -56,7 +55,7 @@ const AddBook = () => {
               id="description"
               onChange={(e) => setBookDesc(e.target.value)}
               value={bookDesc}
-              className="validate"
+              className="description"
             />
             <label htmlFor="description">Book Description</label>
           </div>
@@ -65,7 +64,6 @@ const AddBook = () => {
           Add Book
         </button>
       </form>
-    </div>
   );
 };
 export default AddBook;

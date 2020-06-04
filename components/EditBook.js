@@ -3,6 +3,7 @@ import BooksContext from "../context/context";
 
 const EditBook = () => {
   const { state, dispatch } = useContext(BooksContext);
+  console.log('state', state);
   const [bookName, setBookName] = useState(state.currentBook.books.bookName);
   const [bookAuthor, setBookAuthor] = useState(
     state.currentBook.books.bookAuthor
