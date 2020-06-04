@@ -1,12 +1,11 @@
 import React, { useContext, useState, Fragment } from "react";
-import BooksContext from "../context/context";
+import { useBooksContext } from "../context/context";
 import BookDetails from "./BookDetails";
 
 const BookList = () => {
-  const { state, dispatch } = useContext(BooksContext);
+  const { state, dispatch } = useBooksContext();
   const [selected, setSelected] = useState(null);
-  console.log('Cannot read propertyof undefined', state.books);
-  const selectedBook = state.books.filter((book) => {
+  const selectedBook = state && state.books.filter((book) => {
     if (book.id === selected) {
       return book;
     }
@@ -15,7 +14,7 @@ const BookList = () => {
   return (
     <Fragment>
       <ul className="books-list">
-        {state.books.map((book) => {
+        {state && state.books.map((book) => {
           const { bookName, bookAuthor } = book.books;
           return (
             <li className="book" key={book.id} onClick={(e) => setSelected(book.id)}>
@@ -47,7 +46,7 @@ const BookList = () => {
       </ul>
 
       <div className="bookDetails">
-        <BookDetails book={selectedBook[0]} bookId={selected} />
+        <BookDetails book={state && selectedBook[0]} bookId={selected} />
       </div>
     </Fragment>
   );

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+
+export const useBooksContext = () => useContext(BooksContext);
 
 const BooksContext = React.createContext({
   currentBook: null,
