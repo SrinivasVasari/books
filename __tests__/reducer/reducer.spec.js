@@ -91,8 +91,24 @@ describe("Test the Books Reducer", () => {
 
   it("Should update the state when editing Book details", () => {
     const state = {
-      currentBook: null,
-      books: [],
+      currentBook: {
+        books: {
+          bookAuthor: "test1",
+          bookDesc: "test2",
+          bookName: "test3",
+        },
+        id: "1",
+      },
+      books: [
+        {
+          books: {
+            bookAuthor: "test1",
+            bookDesc: "test2",
+            bookName: "test3",
+          },
+          id: "1",
+        },
+      ],
     };
     const reducer = booksReducer(state, {
       type: "UPDATE_BOOK",
@@ -111,6 +127,7 @@ describe("Test the Books Reducer", () => {
             bookDesc: "test2",
             bookName: "test3",
           },
+          id: "1",
         },
       ],
       currentBook: null,
