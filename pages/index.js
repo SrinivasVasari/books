@@ -22,7 +22,10 @@ export default function Home() {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap"
+            rel="stylesheet"
+          />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
         </Head>
         <main>
@@ -81,7 +84,7 @@ export default function Home() {
             font-size: 2.5rem;
           }
           .brand-logo {
-            font-family: 'Cinzel Decorative', cursive;
+            font-family: "Cinzel Decorative", cursive;
           }
           .main-content {
             width: 100%;
@@ -95,10 +98,10 @@ export default function Home() {
             margin-top: 2rem;
           }
           .book {
-            border: 1px solid #ccc;
-            margin: 0.5rem;
+            border: 1px solid #bbb;
+            margin: 1rem 0.75rem;
             padding: 1rem;
-            border-radius: 5px;
+            border-radius: 4px;
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -107,8 +110,9 @@ export default function Home() {
             position: relative;
             width: 12rem;
             height: 14rem;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-              0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1),
+              10px 10px 0px 0px rgba(0, 0, 0, 0.1),
+              10px 10px 0px 0 rgba(0, 0, 0, 0.1);
           }
 
           .book .header {
@@ -187,11 +191,11 @@ export default function Home() {
               padding: 2rem 0;
             }
             .books-list {
-              justify-content: center;
+              justify-content: space-evenly;
             }
             .book {
               width: 10rem;
-              margin: 1rem 0.5rem;
+              margin: 0;
             }
           }
         `}</style>
