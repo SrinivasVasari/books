@@ -1,12 +1,15 @@
 import React from "react";
 
-const BookDetails = ({ book }) => {
+const BookDetails = ({ book, clickFn }) => {
   if (book) {
     const { bookName, bookAuthor, bookDesc } = book && book.books;
     return (
       <>
         <div className="details">
           <span>Title:</span> <span>{bookName}</span>
+          <span className="right-align" onClick={clickFn}>
+            Close
+          </span>
         </div>
         <div className="details">
           <span>Author:</span>
@@ -22,7 +25,27 @@ const BookDetails = ({ book }) => {
       </>
     );
   } else {
-    return <span>No book selected...</span>;
+    return (
+      <div className="front-no-data">
+        <div className="details">
+          <span>Title:</span>{" "}
+          <span>The Lord of the Rings: The Fellowship of the Ring</span>
+        </div>
+        <div className="details">
+          <span>Author:</span>
+          <span>J. R. R. Tolkien</span>
+        </div>
+        <div className="details">
+          <span>Description:</span>
+          <span>
+            Description:All three parts of the epic masterpiece The Lord of the
+            Rings – The Fellowship of the Ring, The Two Towers & The Return of
+            the King. Sauron, the Dark Lord, has gathered to him all the Rings
+            of Power – the means by which he intends to rule Middle-earth.
+          </span>
+        </div>
+      </div>
+    );
   }
 };
 

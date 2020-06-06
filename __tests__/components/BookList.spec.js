@@ -3,6 +3,7 @@ import { mount } from "enzyme";
 
 import BookList from "../../components/BookList";
 import BooksContext from "../../context/context";
+import BookDetails from "../../components/BookDetails";
 
 describe("Book List Container", () => {
   const value = {
@@ -90,5 +91,28 @@ describe("Book List Container", () => {
     );
     wrapper.find("#delete").at(0).simulate("click");
     expect(deleteHandleFn).toHaveBeenCalledTimes(0);
+  });
+  it("Should call Item click function", () => {
+    const backItemHandleFn = jest.fn();
+    const li = mount(
+      <BooksContext.Provider value={value}>
+        <BookList onClick={backItemHandleFn} />
+      </BooksContext.Provider>
+    );
+    li.find(".details-btn").at(0).simulate("click");
+    expect(backItemHandleFn).toHaveBeenCalledTimes(0);
+  });
+  it('should invoke the handlePress callback', () => {
+      const setSelected = jest.fn();
+      const wrapper = mount(
+        <BooksContext.Provider value={value}>
+          <BookList>
+            <BookDetails clickFn={setSelected} />
+          </BookList>
+        </BooksContext.Provider>
+        
+      );
+      wrapper.find("BookDetails").at(0).prop('clickFn')();
+      expect(setSelected).not.toBeNull();
   });
 });

@@ -60,6 +60,115 @@ export default function Home() {
         `}</style>
 
         <style jsx global>{`
+          .clear {
+            clear: both;
+            content: "";
+            display: table;
+          }
+          .book-card {
+            perspective: 800px;
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+          }
+          .book-card-panel {
+            float: left;
+            height: auto;
+            /*margin: 20px;*/
+            position: relative;
+          }
+          .book-card-panel .front {
+            float: none;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 300px;
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 25px 20px 30px 20px;
+            line-height: 1.2;
+            -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+
+            -webkit-transform: rotateX(0deg) rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            -moz-transform: rotateX(0deg) rotateY(0deg);
+            -moz-transform-style: preserve-3d;
+            -moz-backface-visibility: hidden;
+
+            transform: rotateX(0deg) rotateY(0deg);
+            /* -- transition is the magic sauce for animation -- */
+            -o-transition: all 0.4s ease-in-out;
+            -ms-transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+          }
+          .front-no-data {
+            float: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #fff;
+            padding: 25px 20px 30px 20px;
+            line-height: 1.2;
+          }
+          .book-card-panel.flip .front {
+            width: 100%;
+            border-color: #eee;
+            background: #fff;
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+          }
+          .flip .front {
+            width: 100%;
+          }
+          .book-card-panel .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+
+            padding: 25px 20px 30px 20px;
+            -webkit-transform: rotateY(-180deg);
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            -moz-transform: rotateY(-180deg);
+            -moz-transform-style: preserve-3d;
+            -moz-backface-visibility: hidden;
+            transform: rotateY(-180deg);
+            /* -- transition is the magic sauce for animation -- */
+            -o-transition: all 0.4s ease-in-out;
+            -ms-transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+          }
+          .book-card-panel.flip .back {
+            background: #fff;
+            width: 800px;
+            height: auto;
+            -webkit-transform: rotateX(0deg) rotateY(0deg);
+            -moz-transform: rotateX(0deg) rotateY(0deg);
+            transform: rotateX(0deg) rotateY(0deg);
+
+            -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+            border-top: #0090da 2px solid;
+          }
+
           * {
             box-sizing: border-box;
           }
@@ -97,42 +206,24 @@ export default function Home() {
             flex-flow: wrap;
             margin-top: 2rem;
           }
-          .book {
-            border: 1px solid #bbb;
-            margin: 1rem 0.75rem;
-            padding: 1rem;
-            border-radius: 4px;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: self-start;
-            position: relative;
-            width: 12rem;
-            height: 14rem;
-            box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1),
-              10px 10px 0px 0px rgba(0, 0, 0, 0.1),
-              10px 10px 0px 0 rgba(0, 0, 0, 0.1);
+          .header {
+            padding: 0.75rem 0 0;
+            border-top: 1px solid #ccc;
+            margin: 2.25rem 0 0;
           }
-
-          .book .header {
-            width: 100%;
-          }
-          .book h5 {
-            margin: 0;
-            font-size: 1rem;
-            line-height: 1.25rem;
-            margin-bottom: 0.25rem;
-            font-weight: bold;
+          h5 {
+            font-size: 1.5rem;
+            line-height: 130%;
+            margin: 0 0 1rem;
+            font-weight: 400;
           }
           .author {
             color: #aaa;
-            font-size: 12px;
+            font-size: 18px;
           }
           .btn-container {
-            margin: 2rem 0 0.5rem;
-            position: absolute;
-            bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
           }
           .btn-container a:first-child {
             margin-right: 0.5rem;
@@ -145,11 +236,42 @@ export default function Home() {
             width: 30px;
             height: 30px;
           }
-          .btn-edit {
-            background: #03a9f4;
+          .btn-grp {
+            display: flex;
+            position: fixed;
+            bottom: 1.75rem;
           }
-          .btn-delete {
-            background: #ff8f00;
+          .edit-btn {
+            display: flex;
+            align-items: center;
+          }
+          .details-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            transform: scaleX(-1);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+          }
+          .details-btn:hover {
+            color: #03a9f4;
+          }
+          .details-btn:hover span {
+            color: #333;
+            text-decoration: underline;
+          }
+          .details-btn .material-icons {
+            font-size: 20px;
+          }
+          .details-btn .content {
+            transform: scaleX(-1);
+            display: block;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
           }
           .material-icons {
             font-size: 16px;
@@ -182,7 +304,30 @@ export default function Home() {
             font-weight: bold;
             margin-right: 1rem;
           }
+          .bookList {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          .book-card-panel {
+            margin: 1rem;
+          }
+          .d-none .book-card-panel {
+            display: none;
+          }
+          .book-card-panel.clear.flip {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+          @media (max-width: 767px) {
+            .book-card-panel.flip .back {
+              width: 100%;
+            }
+          }
           @media (max-width: 600px) {
+            .book-card-panel.flip .back {
+              width: 100%;
+            }
             .container {
               width: 100%;
               overflow: hidden;
@@ -192,10 +337,6 @@ export default function Home() {
             }
             .books-list {
               justify-content: space-evenly;
-            }
-            .book {
-              width: 10rem;
-              margin: 0;
             }
           }
         `}</style>

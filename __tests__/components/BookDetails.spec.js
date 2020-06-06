@@ -3,6 +3,7 @@ import { mount } from "enzyme";
 import BookDetails from "../../components/BookDetails";
 
 describe("Book Details", () => {
+  const clickFn = jest.fn();
   const props = {
     book: {
       books: {
@@ -12,6 +13,7 @@ describe("Book Details", () => {
       },
       id: "1"
     },
+    clickFn,
   };
   it("Should render BookDetails with data", () => {
     const wrapper = mount(<BookDetails {...props} />);

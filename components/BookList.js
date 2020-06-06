@@ -14,52 +14,73 @@ const BookList = () => {
     });
 
   return (
-    <Fragment>
-      <ul className="books-list">
+    <>
+      <ul className={`bookList ${selected === null ? "" : "d-none"}`}>
         {state &&
           state.books.map((book) => {
             const { bookName, bookAuthor } = book.books;
             return (
-              <li
-                className="book"
+              <div
                 key={book.id}
-                onClick={(e) => setSelected(book.id)}
+                className={`book-card-panel clear 
+              ${book.id === selected ? "flip" : ""}
+            `}
               >
-                <div className="header">
-                  <h5>{bookName}</h5>
-                  <span className="author">
-                    <i>__{bookAuthor}</i>
-                  </span>
+                <div className={`book-card`}>
+                  <li className="front">
+                    <div className="header">
+                      <h5>{bookName}</h5>
+                      <span className="author">
+                        <i>__{bookAuthor}</i>
+                      </span>
+                    </div>
+                    <div className="btn-container">
+                      <div className="btn-grp">
+                        <a
+                          id="edit"
+                          onClick={() =>
+                            dispatch({
+                              type: "SET_CURRENT_BOOK",
+                              payload: book,
+                            })
+                          }
+                          className="edit-btn btn-floating btn-small waves-effect waves-light blue"
+                        >
+                          <i className="material-icons">edit</i>
+                        </a>
+                        <a
+                          id="delete"
+                          onClick={() =>
+                            dispatch({ type: "DELETE_BOOK", payload: book.id })
+                          }
+                          className="delete-btn btn-floating btn-small waves-effect waves-light orange"
+                        >
+                          <i className="material-icons">delete</i>
+                        </a>
+                      </div>
+                      <a
+                        id="details"
+                        onClick={(e) => setSelected(book.id)}
+                        className="details-btn"
+                      >
+                      <span className="content">details</span>
+                        <i className="material-icons">reply</i>
+                      </a>
+                    </div>
+                  </li>
+                  <div className="back">
+                    <BookDetails
+                      book={state && selectedBook[0]}
+                      bookId={selected}
+                      clickFn={(e) => setSelected(null)}
+                    />
+                  </div>
                 </div>
-                <div className="btn-container">
-                  <a
-                    id="edit"
-                    onClick={() =>
-                      dispatch({ type: "SET_CURRENT_BOOK", payload: book })
-                    }
-                    className="edit-btn btn-floating btn-small waves-effect waves-light blue"
-                  >
-                    <i className="material-icons">edit</i>
-                  </a>
-                  <a
-                  id="delete"
-                    onClick={() =>
-                      dispatch({ type: "DELETE_BOOK", payload: book.id })
-                    }
-                    className="btn-floating btn-small waves-effect waves-light orange"
-                  >
-                    <i className="material-icons">delete</i>
-                  </a>
-                </div>
-              </li>
+              </div>
             );
           })}
       </ul>
-
-      <div className="bookDetails">
-        <BookDetails book={state && selectedBook[0]} bookId={selected} />
-      </div>
-    </Fragment>
+    </>
   );
 };
 
