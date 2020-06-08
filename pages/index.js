@@ -319,6 +319,31 @@ export default function Home() {
             width: 100%;
             height: 100%;
           }
+          .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem
+          }
+          .close span {
+            font-weight: bold;
+            display: flex;
+            width: 50px;
+            font-size: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .close i {
+          font-weight: 600;
+          font-size: 1rem;
+        }
+          // .details:first-child {
+          //   display: flex;
+          //   justify-content: space-between;
+          // }
+          // .details:first-child span {
+          //   display: flex;
+          //   align-items: center;
+          // }
           @media (max-width: 767px) {
             .book-card-panel.flip .back {
               width: 100%;

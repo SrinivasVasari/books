@@ -7,10 +7,11 @@ const BookDetails = ({ book, clickFn }) => {
       <>
         <div className="details">
           <span>Title:</span> <span>{bookName}</span>
-          <span className="right-align" onClick={clickFn}>
-            Close
-          </span>
         </div>
+        <a id="close" className="details-btn" onClick={clickFn}>
+          <span className="content">Close</span>
+          <i className="material-icons">reply</i>
+        </a>
         <div className="details">
           <span>Author:</span>
           <span>{bookAuthor}</span>
