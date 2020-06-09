@@ -5,11 +5,6 @@ import EditBook from "../../components/EditBook";
 import BooksContext from "../../context/context";
 
 describe("Edit Book Container", () => {
-  const testState = {
-    bookName: "test",
-    bookAuthor: "test1",
-    bookDesc: "test2",
-  };
   let wrapper;
   let alertSpy;
   beforeEach(() => {
@@ -52,25 +47,6 @@ describe("Edit Book Container", () => {
     );
     expect(wrapper).not.toBeNull();
   });
-  it("Should call input onChange function", () => {
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("change", { target: { name: "name", value: "test" } });
-    wrapper
-      .find("input")
-      .at(1)
-      .simulate("change", { target: { name: "author", value: "test1" } });
-    wrapper
-      .find("input")
-      .at(2)
-      .simulate("change", {
-        target: { name: "description", value: "test2" },
-      });
-    expect(testState.bookName).toEqual("test");
-    expect(testState.bookAuthor).toEqual("test1");
-    expect(testState.bookDesc).toEqual("test2");
-  });
   it("Should call handleSubmit function when form is submitted", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
@@ -91,13 +67,13 @@ describe("Edit Book Container", () => {
       target: { name: "description", value: "blah2" },
     });
     form.simulate("submit", fakeEvent);
-    expect(handleSubmitFn.mock.calls).not.toBeNull();
+    expect(handleSubmitFn).toHaveBeenCalledTimes(0);
   });
   it("Should call alert inside handleSubmit function when when submitted with empty values", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
     const fakeEvent = { preventDefault: () => {} };
-    const jsdomAlert = window.alert;
+    const domAlert = window.alert;
     window.alert = () => {};
     const wrapper = mount(
       <BooksContext.Provider value={{ dispatch: dispatchMock }}>
@@ -111,6 +87,6 @@ describe("Edit Book Container", () => {
     form.simulate("submit", fakeEvent);
     expect(handleSubmitFn.mock.calls).not.toBeNull();
     expect(alertSpy).not.toBeNull();
-    window.alert = jsdomAlert;
+    window.alert = domAlert;
   });
 });

@@ -4,12 +4,7 @@ import toJson from "enzyme-to-json";
 import AddBook from "../../components/AddBook";
 import BooksContext from "../../context/context";
 
-describe("AddBook Container", () => {
-  const testState = {
-    bookName: "test",
-    bookAuthor: "test1",
-    bookDesc: "test2",
-  };
+describe("AddBook Container", () => { 
   let wrapper;
   let alertSpy;
   beforeEach(() => {
@@ -47,13 +42,13 @@ describe("AddBook Container", () => {
       target: { name: "description", value: "blah2" },
     });
     form.simulate("submit", fakeEvent);
-    expect(handleSubmitFn.mock.calls).not.toBeNull();
+    expect(handleSubmitFn).toHaveBeenCalledTimes(0);
   });
   it("Should call alert inside handleSubmit function when when submitted with empty values", () => {
     const dispatchMock = jest.fn();
     const handleSubmitFn = jest.fn();
     const fakeEvent = { preventDefault: () => {} };
-    const jsdomAlert = window.alert;
+    const domAlert = window.alert;
     window.alert = () => {};
     const wrapper = mount(
       <BooksContext.Provider value={{ dispatch: dispatchMock }}>
@@ -67,7 +62,7 @@ describe("AddBook Container", () => {
     form.simulate("submit", fakeEvent);
     expect(handleSubmitFn.mock.calls).not.toBeNull();
     expect(alertSpy).not.toBeNull();
-    window.alert = jsdomAlert;
+    window.alert = domAlert;
   });
 
   it("Should render submit button with Add Book text", () => {
@@ -76,25 +71,5 @@ describe("AddBook Container", () => {
     expect(button).toHaveLength(1);
     expect(button.prop("type")).toEqual("submit");
     expect(button.text()).toEqual("Add Book");
-  });
-
-  it("Should call input onChange function when user enter in input", () => {
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("change", { target: { name: "name", value: "test" } });
-    wrapper
-      .find("input")
-      .at(1)
-      .simulate("change", { target: { name: "author", value: "test1" } });
-    wrapper
-      .find("input")
-      .at(2)
-      .simulate("change", {
-        target: { name: "description", value: "test2" },
-      });
-    expect(testState.bookName).toEqual("test");
-    expect(testState.bookAuthor).toEqual("test1");
-    expect(testState.bookDesc).toEqual("test2");
   });
 });

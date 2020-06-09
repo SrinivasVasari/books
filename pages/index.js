@@ -212,7 +212,7 @@ export default function Home() {
             margin: 2.25rem 0 0;
           }
           h5 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             line-height: 130%;
             margin: 0 0 1rem;
             font-weight: 400;
