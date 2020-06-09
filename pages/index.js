@@ -73,7 +73,6 @@ export default function Home() {
           .book-card-panel {
             float: left;
             height: auto;
-            /*margin: 20px;*/
             position: relative;
           }
           .book-card-panel .front {
@@ -87,6 +86,7 @@ export default function Home() {
             background: #fff;
             padding: 25px 20px 30px 20px;
             line-height: 1.2;
+            overflow: auto;
             -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
             -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
@@ -99,12 +99,12 @@ export default function Home() {
             -moz-backface-visibility: hidden;
 
             transform: rotateX(0deg) rotateY(0deg);
-            /* -- transition is the magic sauce for animation -- */
             -o-transition: all 0.4s ease-in-out;
             -ms-transition: all 0.4s ease-in-out;
             -moz-transition: all 0.4s ease-in-out;
             -webkit-transition: all 0.4s ease-in-out;
             transition: all 0.4s ease-in-out;
+            word-break: break-all;
           }
           .front-no-data {
             float: none;
@@ -132,6 +132,7 @@ export default function Home() {
             width: 100%;
           }
           .book-card-panel .back {
+            word-break: break-all;
             position: absolute;
             top: 0;
             left: 0;
@@ -147,7 +148,6 @@ export default function Home() {
             -moz-transform-style: preserve-3d;
             -moz-backface-visibility: hidden;
             transform: rotateY(-180deg);
-            /* -- transition is the magic sauce for animation -- */
             -o-transition: all 0.4s ease-in-out;
             -ms-transition: all 0.4s ease-in-out;
             -moz-transition: all 0.4s ease-in-out;
@@ -322,7 +322,7 @@ export default function Home() {
           .close {
             position: absolute;
             top: 1rem;
-            right: 1rem
+            right: 1rem;
           }
           .close span {
             font-weight: bold;
@@ -331,19 +331,28 @@ export default function Home() {
             font-size: 1rem;
             align-items: center;
             justify-content: space-between;
-        }
-        .close i {
-          font-weight: 600;
-          font-size: 1rem;
-        }
-          // .details:first-child {
-          //   display: flex;
-          //   justify-content: space-between;
-          // }
-          // .details:first-child span {
-          //   display: flex;
-          //   align-items: center;
-          // }
+          }
+          .close i {
+            font-weight: 600;
+            font-size: 1rem;
+          }
+          .details:first-child {
+            margin: 1rem 0 0;
+          }
+          #front::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            margin: 4rem 0 0;
+          }
+
+          #front::-webkit-scrollbar {
+            width: 6px;
+            background-color: #fff;
+          }
+
+          #front::-webkit-scrollbar-thumb {
+            background-color: #000000;
+          }
           @media (max-width: 767px) {
             .book-card-panel.flip .back {
               width: 100%;

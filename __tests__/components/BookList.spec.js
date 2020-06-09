@@ -54,13 +54,27 @@ describe("Book List Container", () => {
     expect(wrapper).not.toBeNull();
   });
 
-  it("Initially display four List Items.", () => {
+  it("Should display initially four List Items.", () => {
     const wrapper = mount(
       <BooksContext.Provider value={value}>
         <BookList />
       </BooksContext.Provider>
     );
     expect(wrapper.find("li")).toHaveLength(4);
+  });
+  it("Should render if there is state books empty.", () => {
+    const mockValue = {
+      state: {
+        books: []
+      },
+      dispatch: jest.fn(),
+    }
+    const wrapper = mount(
+      <BooksContext.Provider value={mockValue}>
+        <BookList />
+      </BooksContext.Provider>
+    );
+    expect(wrapper).not.toBeNull();
   });
   it("Should call List Item click function", () => {
     const listItemHandleFn = jest.fn();
@@ -102,7 +116,7 @@ describe("Book List Container", () => {
     li.find(".details-btn").at(0).simulate("click");
     expect(backItemHandleFn).toHaveBeenCalledTimes(0);
   });
-  it('should invoke the handlePress callback', () => {
+  it('should invoke the clickFunction callback', () => {
       const setSelected = jest.fn();
       const wrapper = mount(
         <BooksContext.Provider value={value}>

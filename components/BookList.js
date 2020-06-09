@@ -12,9 +12,12 @@ const BookList = () => {
         return book;
       }
     });
-
+if(state && !(state.books.length > 0)) {
+  return <p>No Book to show please add book...</p>
+}
   return (
     <>
+    {state && (state.books.length > 0) ?
       <ul className={`bookList ${selected === null ? "" : "d-none"}`}>
         {state &&
           state.books.map((book) => {
@@ -27,7 +30,7 @@ const BookList = () => {
             `}
               >
                 <div className={`book-card`}>
-                  <li className="front">
+                  <li id="front" className="front">
                     <div className="header">
                       <h5>{bookName}</h5>
                       <span className="author">
@@ -80,6 +83,7 @@ const BookList = () => {
             );
           })}
       </ul>
+      : <p>please add book to show ...</p>}
     </>
   );
 };
