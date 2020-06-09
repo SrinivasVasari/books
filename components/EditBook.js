@@ -20,10 +20,18 @@ const EditBook = () => {
       bookAuthor,
       bookDesc,
     };
-    dispatch({ type: "UPDATE_BOOK", payload: updateBook });
-    setBookName("");
-    setBookAuthor("");
-    setBookDesc("");
+    if (
+      bookName.trim() === "" ||
+      bookAuthor.trim() === "" ||
+      bookDesc.trim() === ""
+    ) {
+      alert("Cannot add a blank");
+    } else {
+      dispatch({ type: "UPDATE_BOOK", payload: updateBook });
+      setBookName("");
+      setBookAuthor("");
+      setBookDesc("");
+    }
   };
 
   return (

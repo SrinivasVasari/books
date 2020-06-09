@@ -14,56 +14,64 @@ const AddBook = () => {
       bookAuthor,
       bookDesc,
     };
-    dispatch({ type: "ADD_BOOK", payload: addBook });
-    setBookName("");
-    setBookAuthor("");
-    setBookDesc("");
+    if (
+      bookName.trim() === "" ||
+      bookAuthor.trim() === "" ||
+      bookDesc.trim() === ""
+    ) {
+      alert("Cannot add a blank");
+    } else {
+      dispatch({ type: "ADD_BOOK", payload: addBook });
+      setBookName("");
+      setBookAuthor("");
+      setBookDesc("");
+    }
   };
 
   return (
-      <form className="form col s12" onSubmit={handleSubmit}>
-        <div className="row customRow">
-          <div className="input-field col s12 m6">
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onChange={(e) => setBookName(e.target.value)}
-              value={bookName}
-              className="name"
-            />
-            <label htmlFor="name">Book Name</label>
-          </div>
-          <div className="input-field col s12 m6">
-            <input
-              type="text"
-              name="author"
-              id="author"
-              onChange={(e) => setBookAuthor(e.target.value)}
-              value={bookAuthor}
-              className="author"
-            />
-            <label htmlFor="author">Book Author</label>
-          </div>
+    <form className="form col s12" onSubmit={handleSubmit}>
+      <div className="row customRow">
+        <div className="input-field col s12 m6">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={(e) => setBookName(e.target.value)}
+            value={bookName}
+            className="name"
+          />
+          <label htmlFor="name">Book Name</label>
         </div>
+        <div className="input-field col s12 m6">
+          <input
+            type="text"
+            name="author"
+            id="author"
+            onChange={(e) => setBookAuthor(e.target.value)}
+            value={bookAuthor}
+            className="Author"
+          />
+          <label htmlFor="author">Book Author</label>
+        </div>
+      </div>
 
-        <div className="row customRow">
-          <div className="input-field col s12 m12">
-            <input
-              type="text"
-              name="description"
-              id="description"
-              onChange={(e) => setBookDesc(e.target.value)}
-              value={bookDesc}
-              className="description"
-            />
-            <label htmlFor="description">Book Description</label>
-          </div>
+      <div className="row customRow">
+        <div className="input-field col s12 m12">
+          <input
+            type="text"
+            name="description"
+            id="description"
+            onChange={(e) => setBookDesc(e.target.value)}
+            value={bookDesc}
+            className="description"
+          />
+          <label htmlFor="description">Book Description</label>
         </div>
-        <button type="submit" className="waves-effect waves-light btn-small">
-          Add Book
-        </button>
-      </form>
+      </div>
+      <button type="submit" className="waves-effect waves-light btn-small">
+        Add Book
+      </button>
+    </form>
   );
 };
 export default AddBook;

@@ -29,7 +29,7 @@ exports[`AddBook Container Should render correctly 1`] = `
       className="input-field col s12 m6"
     >
       <input
-        className="author"
+        className="Author"
         id="author"
         name="author"
         onChange={[Function]}

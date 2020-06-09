@@ -11,7 +11,9 @@ describe("Edit Book Container", () => {
     bookDesc: "test2",
   };
   let wrapper;
+  let alertSpy;
   beforeEach(() => {
+    alertSpy = jest.spyOn(window, "alert");
     wrapper = shallow(<EditBook />);
   });
 
@@ -90,5 +92,25 @@ describe("Edit Book Container", () => {
     });
     form.simulate("submit", fakeEvent);
     expect(handleSubmitFn.mock.calls).not.toBeNull();
+  });
+  it("Should call alert inside handleSubmit function when when submitted with empty values", () => {
+    const dispatchMock = jest.fn();
+    const handleSubmitFn = jest.fn();
+    const fakeEvent = { preventDefault: () => {} };
+    const jsdomAlert = window.alert;
+    window.alert = () => {};
+    const wrapper = mount(
+      <BooksContext.Provider value={{ dispatch: dispatchMock }}>
+        <EditBook onSubmit={handleSubmitFn} />
+      </BooksContext.Provider>
+    );
+    const form = wrapper.find("form");
+    wrapper.find("#name").simulate("change", {
+      target: { name: "name", value: "" },
+    });
+    form.simulate("submit", fakeEvent);
+    expect(handleSubmitFn.mock.calls).not.toBeNull();
+    expect(alertSpy).not.toBeNull();
+    window.alert = jsdomAlert;
   });
 });
